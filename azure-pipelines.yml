@@ -68,5 +68,5 @@ stages:
               appName: $(webAppName)
               # This property is what lets us deploy to any folder other than ROOT
               # This can be any arbitrary name
-              customDeployFolder: 'devops'
+              # customDeployFolder: 'devops'
               package: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
