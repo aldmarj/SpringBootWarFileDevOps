@@ -51,7 +51,7 @@ stages:
   dependsOn: Build
   condition: succeeded()
   jobs:
-  - deployment: DeployWindowsWebApp
+  - deployment: DeployWebApp
     displayName: Deploy Windows Web App
     environment: $(environmentName)
     pool:
@@ -60,13 +60,21 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: <WEB APP NAME>'
-            inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webApp
-              appName: $(webAppName)
-              # This property is what lets us deploy to any folder other than ROOT
-              # This can be any arbitrary name
-              # customDeployFolder: 'devops'
-              package: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
+           - task: AzureRmWebAppDeployment@4
+             inputs:
+              ConnectionType: 'AzureRM'
+              azureSubscription: 'Ajoubert - Internal Dev/Test (e4b982d8-4277-4ffa-8a49-45e19da35bc6)'
+              appType: 'webApp'
+              WebAppName: 'ajoubert-tomcat'
+              packageForLinux: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
+          # - task: AzureWebApp@1
+          #   displayName: 'Azure Web App Deploy: ajoubert-tomcat'
+          #   inputs:
+          #     azureSubscription: $(azureSubscription)
+          #     appType: webApp
+          #     appName: $(webAppName)
+          #     # This property is what lets us deploy to any folder other than ROOT
+          #     # This can be any arbitrary name
+          #     # customDeployFolder: 'devops'
+          #     package: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
+
