@@ -9,7 +9,7 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'e4b982d8-4277-4ffa-8a49-45e19da35bc6'
+  azureSubscription: 'Ajoubert - Internal Dev/Test (e4b982d8-4277-4ffa-8a49-45e19da35bc6)'
 
   # Web app name
   webAppName: 'ajoubert-tomcat'
